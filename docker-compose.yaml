@@ -19,7 +19,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/pet_db
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: 1234
-      SPRING_JPA_HIBERNATE_DDL_AUTO: create
+      SPRING_JPA_HIBERNATE_DDL_AUTO: none
     healthcheck:
       test: [ "CMD-SHELL", "nc -z localhost 8080 || exit 1" ]
       start_period: 35s
