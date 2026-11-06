@@ -5,6 +5,7 @@ import com.example.catalog.repository.CatalogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,5 +19,9 @@ public class CatalogService {
 
     public Optional<Product> getProductByID(Long id) {
         return catalogRepository.findById(id);
+    }
+
+    public List<Product> getAllProducts() {
+        return catalogRepository.findAll();
     }
 }
