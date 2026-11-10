@@ -47,13 +47,13 @@ public class CatalogController {
     }
 
     @GetMapping("/products")
-    public ResponseEntity<List<ProductDTO>> getAllProducts(@RequestParam(required = false) String category,
-                                                           @RequestParam(required = false) @Min(0) BigDecimal minPrice,
-                                                           @RequestParam(required = false) @Min(1) BigDecimal maxPrice,
-                                                           @RequestParam(defaultValue = "0") @Min(0) int pageNumber,
-                                                           @RequestParam(defaultValue = "5") @Min(1) @Max(100) int pageSize,
-                                                           @RequestParam(defaultValue = "id") String sortValue,
-                                                           @RequestParam(defaultValue = "ASC") String directionSort) {
+    public ResponseEntity<List<ProductDTO>> getProducts(@RequestParam(required = false) String category,
+                                                        @RequestParam(required = false) @Min(0) BigDecimal minPrice,
+                                                        @RequestParam(required = false) @Min(1) BigDecimal maxPrice,
+                                                        @RequestParam(defaultValue = "0") @Min(0) int pageNumber,
+                                                        @RequestParam(defaultValue = "5") @Min(1) @Max(100) int pageSize,
+                                                        @RequestParam(defaultValue = "id") String sortValue,
+                                                        @RequestParam(defaultValue = "ASC") String directionSort) {
         List<ProductDTO> productList = new ArrayList<>();
         ResponseEntity<List<ProductDTO>> response;
         Specification<Product> productSpecification = Specification.unrestricted();
@@ -68,7 +68,7 @@ public class CatalogController {
 
         Pageable currentPage = PageRequest.of(pageNumber, pageSize, sortMethod);
 
-        Page<Product> products = catalogService.getAllProducts(productSpecification, currentPage);
+        Page<Product> products = catalogService.getProducts(productSpecification, currentPage);
         if (!products.isEmpty()) {
             for (Product product : products) {
                 ProductDTO productDTO = new ProductDTO().convertToDTO(product);
