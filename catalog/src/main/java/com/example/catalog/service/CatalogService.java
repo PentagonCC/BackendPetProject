@@ -24,7 +24,7 @@ public class CatalogService {
         return catalogRepository.findById(id);
     }
 
-    public Page<Product> getAllProducts(Specification<Product> productSpecification, Pageable currentPage) {
+    public Page<Product> getProducts(Specification<Product> productSpecification, Pageable currentPage) {
         return catalogRepository.findAll(productSpecification, currentPage);
     }
 }
